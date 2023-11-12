@@ -25,7 +25,6 @@ import (
 	"strconv"
 	"strings"
 
-	"cirello.io/errors"
 	"github.com/davecgh/go-spew/spew"
 )
 
@@ -41,7 +40,7 @@ func main() {
 		l := parse(scanner.Text())
 		if baseImg == nil {
 			fd, err := os.Open(filepath.Join("kohrah", l.fn))
-			checkErr(errors.E(err))
+			checkErr(err)
 			img, _, err := image.Decode(fd)
 			checkErr(err)
 			baseImg = img
@@ -50,7 +49,7 @@ func main() {
 		spew.Dump(l)
 		rgba := image.NewRGBA(baseImg.Bounds())
 		fd, err := os.Open(filepath.Join("kohrah", l.fn))
-		checkErr(errors.E(err))
+		checkErr(err)
 		img2, _, err := image.Decode(fd)
 		checkErr(err)
 
